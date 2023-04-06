@@ -1,13 +1,24 @@
 <template>
-  <p>{{ paragraph }}oi</p>
+  <p v-if="isLoaded">{{ paragraph }}oi</p>
 </template>
 
 <script>
 import axios from "axios";
 export default  {
   name: "Paragraph",
+  props: {
+    minLength: {
+      type: Number,
+      required: true,
+    },
+    maxLength: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
+      isLoaded: false,
       wordsArray: [],
       quotesArray: [],
       namesArray: [],
@@ -16,34 +27,34 @@ export default  {
     }
   },
 
-  mounted() {
-    this.getWords()
-    this.getQuotes()
-    this.getNames()
-    this.generateParagraph()
+  async mounted() {
+    await this.getWords()
+    await this.getQuotes()
+    await this.getNames()
+    this.generateParagraph(this.minLength, this.maxLength)
   },
 
   methods: {
-    getWords: function () {
-      axios.get('/texts/words.json').then(response => {
+    getWords: async function () {
+      return axios.get('/texts/words.json').then(response => {
         this.wordsArray = response.data;
       }).catch(error => {
         console.log(error);
       });
     },
-    getQuotes: function () {
-      axios.get('/texts/quotes.json').then(response => {
+    getQuotes: async function () {
+      return axios.get('/texts/quotes.json').then(response => {
         this.quotesArray = response.data;
       }).catch(error => {
         console.log(error);
       })
     },
-    getNames: function () {
-      axios.get('/texts/names.json').then(response => {
+    getNames: async function () {
+      return axios.get('/texts/names.json').then(response => {
         this.namesArray = response.data;
       }).catch(error => {
         console.log(error);
-      })
+      }).finally(fn => this.isLoaded = true)
     },
     generateSentence: function (minLength, maxLength) {
       this.sentence = "";

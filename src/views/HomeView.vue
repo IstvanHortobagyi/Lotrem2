@@ -4,7 +4,11 @@
     <a class="btn btn--md btn--success" href="#">Generate</a>
   	<br><br>
 
-    <Paragraph></Paragraph>
+    <Paragraph
+      v-for="n in 10"
+      :min-length="3"
+      :max-length="15"
+    />
   </main>
 </template>
 
