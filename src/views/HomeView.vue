@@ -1,9 +1,10 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+  	<a class="btn btn--md btn--success" href="#">Generate</a>
+  	<br><br>
+    <p>Generated text</p>
   </main>
 </template>
