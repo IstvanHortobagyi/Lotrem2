@@ -1,35 +1,8 @@
 <template>
-	<header class="header">
-		<a class="logo" href="#">
-			<img class="logo__image" src="/assets/static/images/logo.png" alt="placeholder">
-		</a>
-		<nav class="nav">
-			<ul class="nav__list">
-				<li class="nav__item">
-					<a class="nav__link" href="#">About</a>
-					<a class="nav__link" href="#">Generator</a>
-					<a class="nav__link" href="#">Contact</a>
-				</li>
-			</ul>
-		</nav>
-	</header>
-
-	<main class="main">
-		<a class="btn btn--md btn--success" href="#" @click.prevent="generateText()">Generate</a>
-		<br><br>
-		<a href="#" @click="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
-		<span v-html="fullText" v-if="!showHtml"></span>
-		<span v-else>{{ fullText }}</span>
-	</main>
-
-	<footer class="footer">
-		<p>&copy; Copyright 2023, LotremIpsum.com</p>
-		<p>
-			Design by <a href="https://rolandszabo.design/" target="_blank" rel="noreferrer noopener">Roland Szabó</a>,
-			Coding by <a href="https://istvanhortobagyi.com/" target="_blank" rel="noreferrer noopener">István Hortobágyi</a>,
-			Illustrations by <a href="#" target="_blank" rel="noreferrer noopener">Isabelle Russell</a>.
-		</p>
-	</footer>
+	<a class="btn btn--md btn--success" href="#" @click.prevent="generateText()">Generate</a>
+	<a href="#" @click="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
+	<span v-html="fullText" v-if="!showHtml"></span>
+	<span v-else>{{ fullText }}</span>
 </template>
 
 <script>
@@ -37,7 +10,7 @@ import axios from "axios";
 import Paragraph from "@/assets/Components/Paragraph.vue";
 import {utilsStore} from "@/stores/UtilsStore";
 
-export default  {
+export default {
 	setup() {
 		return {
 			utilsStore: utilsStore()
