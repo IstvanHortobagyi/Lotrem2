@@ -7,7 +7,11 @@
 			<ul class="nav__list">
 				<li class="nav__item">
 					<RouterLink class="nav__link" to="/">Generator</RouterLink>
+				</li>
+				<li class="nav__item">
 					<RouterLink class="nav__link" to="/about">About</RouterLink>
+				</li>
+				<li class="nav__item">
 					<RouterLink class="nav__link" to="/contact">Contact</RouterLink>
 				</li>
 			</ul>

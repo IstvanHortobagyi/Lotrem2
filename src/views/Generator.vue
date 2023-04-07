@@ -1,6 +1,8 @@
 <template>
 	<a class="btn btn--md btn--success" href="#" @click.prevent="generateText()">Generate</a>
+	<br><br>
 	<a href="#" @click="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
+	<br><br>
 	<span v-html="fullText" v-if="!showHtml"></span>
 	<span v-else>{{ fullText }}</span>
 </template>

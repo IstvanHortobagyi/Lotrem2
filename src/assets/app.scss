@@ -31,24 +31,57 @@ p, li {
 	margin-bottom: 1rem;
 }
 
+a {
+	color: #AAA;
+}
 
 
-/* SITE ELEMENTS */
+
+/* HEADER */
 
 .header {
-
+	text-align: center;
 }
 
 .logo__image {
 	height: 200px;
 }
 
-.main {
-	margin: 3rem 0;
+.nav {
+	margin-top: 1rem;
 }
 
-.footer {
+.nav__list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
+.nav__item + .nav__item {
+	margin-left: 1rem;
+}
+
+.nav__link {
+	padding: 1rem;
+}
+
+
+
+/* MAIN */
+
+.main {
+	margin: 2rem 0;
+	padding: 2rem 0;
+	border-top: 1px solid #333;
+	border-bottom: 1px solid #333;
+}
+
+
+
+/* FOOTER */
+
+.footer {
+	text-align: center;
 }
 
 
