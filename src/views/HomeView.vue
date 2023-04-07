@@ -1,98 +1,97 @@
-<script setup>
-</script>
-
 <template>
   <main>
-  	<a class="btn btn--md btn--success" href="#" @click.prevent="generateParagraph(3, 10)">Generate</a>
+  	<a class="btn btn--md btn--success" href="#" @click.prevent="generateText()">Generate</a>
   	<br><br>
-    <p>{{ paragraph }}</p>
+    <a href="#" @click="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
+    <span v-html="fullText" v-if="!showHtml"></span>
+    <span v-else>{{ fullText }}</span>
   </main>
 </template>
 
 <script>
 import axios from "axios";
+import Paragraph from "@/assets/Components/Paragraph.vue";
+import {utilsStore} from "@/stores/UtilsStore";
 export default  {
-  data() {
+  setup() {
     return {
-      wordsArray: [],
-      quotesArray: [],
-      namesArray: [],
-      sentence: '',
-      paragraph: '',
+      utilsStore: utilsStore()
     }
   },
-
-  mounted() {
-    this.getWords()
-    this.getQuotes()
-    this.getNames()
-
+  components: {
+    Paragraph
   },
-
+  data() {
+    return {
+      fullText: '',
+      showHtml: false,
+    }
+  },
+  mounted() {
+    this.utilsStore.getWords()
+    this.utilsStore.getNames()
+    this.utilsStore.getQuotes()
+  },
+  computed: {
+    words: function () {
+      return this.utilsStore.words
+    },
+    names: function () {
+      return this.utilsStore.names
+    },
+    quotes: function () {
+      return this.utilsStore.quotes
+    }
+  },
   methods: {
-    getWords: function () {
-      axios.get('/texts/words.json').then(response => {
-        this.wordsArray = response.data;
-      }).catch(error => {
-        console.log(error);
-      });
-    },
-    getQuotes: function () {
-      axios.get('/texts/quotes.json').then(response => {
-        this.quotesArray = response.data;
-      }).catch(error => {
-        console.log(error);
-      })
-    },
-    getNames: function () {
-      axios.get('/texts/names.json').then(response => {
-        this.namesArray = response.data;
-      }).catch(error => {
-        console.log(error);
-      })
-    },
     generateSentence: function (minLength, maxLength) {
-      this.sentence = "";
-      let remainingWords = this.wordsArray;
+      let sentence = "";
+      let remainingWords = this.words;
       let usedWords = [];
       let length = Math.floor(Math.random()*(maxLength + 1 - minLength) + minLength);
       let nameLocation = Math.floor(Math.random()*(length));
       for (let i = 0; i < length; i++) {
         if (i === nameLocation) {
-          this.sentence += this.namesArray[Math.floor(Math.random()*this.namesArray.length)] + ' ';
+          sentence += this.names[Math.floor(Math.random()*this.names.length)] + ' ';
         } else {
           remainingWords = remainingWords.filter(x => !usedWords.includes(x));
           let wordIndex = Math.floor(Math.random()*remainingWords.length);
           usedWords.push(remainingWords[wordIndex]);
-          console.log(usedWords);
-          this.sentence += remainingWords[wordIndex] + ' ';
+          sentence += remainingWords[wordIndex] + ' ';
         }
-        console.log(remainingWords);
       }
-      this.sentence = this.sentence.trimEnd();
+      sentence = sentence.trimEnd();
       let punctuation = Math.floor(Math.random()*10);
       if (punctuation < 7) {
-        this.sentence += "."
+        sentence += "."
       } else if (7 <= punctuation <9) {
-        this.sentence += "?"
+        sentence += "?"
       }else if (punctuation >=9) {
-        this.sentence += "!"
+        sentence += "!"
       }
-      this.sentence = this.sentence.charAt(0).toUpperCase() + this.sentence.slice(1)
-      return this.sentence;
+      sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1)
+      return sentence;
     },
     generateParagraph:function (minLength, maxLength) {
-      this.paragraph = "";
+      let paragraph = "";
       let length = Math.floor(Math.random()*(maxLength + 1 - minLength) + minLength);
       let quoteLocation = Math.floor(Math.random()*(length));
       for (let i = 0; i < length; i++){
         if (i === quoteLocation) {
-          this.paragraph += this.quotesArray[Math.floor(Math.random()*this.quotesArray.length)] + ' ';
+          paragraph += this.quotes[Math.floor(Math.random()*this.quotes.length)] + ' ';
         } else {
-          this.paragraph += this.generateSentence(3, 12) + " ";
+          paragraph += this.generateSentence(3, 12) + " ";
         }
       }
-      this.paragraph = this.paragraph.trimEnd();
+      paragraph = paragraph.trimEnd();
+      return paragraph;
+    },
+    generateText:function () {
+      let paragraphs = "";
+      for (let i = 0; i < 5; i++) {
+        paragraphs += "<p>" + (this.generateParagraph(2, 5)) + "</p>";
+      }
+      this.fullText = paragraphs;
     }
   }
 }
