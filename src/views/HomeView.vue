@@ -36,11 +36,12 @@
 import axios from "axios";
 import Paragraph from "@/assets/Components/Paragraph.vue";
 import {utilsStore} from "@/stores/UtilsStore";
+
 export default  {
 	setup() {
-	return {
-		utilsStore: utilsStore()
-	}
+		return {
+			utilsStore: utilsStore()
+		}
 	},
 	components: {
 		Paragraph
@@ -67,57 +68,67 @@ export default  {
 			return this.utilsStore.quotes
 		}
 	},
-  methods: {
-	generateSentence: function (minLength, maxLength) {
-	  let sentence = "";
-	  let remainingWords = this.words;
-	  let usedWords = [];
-	  let length = Math.floor(Math.random()*(maxLength + 1 - minLength) + minLength);
-	  let nameLocation = Math.floor(Math.random()*(length));
-	  for (let i = 0; i < length; i++) {
-		if (i === nameLocation) {
-		  sentence += this.names[Math.floor(Math.random()*this.names.length)] + ' ';
-		} else {
-		  remainingWords = remainingWords.filter(x => !usedWords.includes(x));
-		  let wordIndex = Math.floor(Math.random()*remainingWords.length);
-		  usedWords.push(remainingWords[wordIndex]);
-		  sentence += remainingWords[wordIndex] + ' ';
+	methods: {
+		generateSentence: function (minLength, maxLength) {
+			let sentence = "";
+			let remainingWords = this.words;
+			let usedWords = [];
+			let length = Math.floor(Math.random()*(maxLength + 1 - minLength) + minLength);
+			let nameLocation = Math.floor(Math.random()*(length));
+
+			for (let i = 0; i < length; i++) {
+				if (i === nameLocation) {
+					sentence += this.names[Math.floor(Math.random()*this.names.length)] + ' ';
+				} else {
+					remainingWords = remainingWords.filter(x => !usedWords.includes(x));
+					let wordIndex = Math.floor(Math.random()*remainingWords.length);
+					usedWords.push(remainingWords[wordIndex]);
+					sentence += remainingWords[wordIndex] + ' ';
+				}
+			}
+
+			sentence = sentence.trimEnd();
+			let punctuation = Math.floor(Math.random()*10);
+
+			if (punctuation < 7) {
+				sentence += "."
+			} else if (7 <= punctuation < 9) {
+				sentence += "?"
+			} else if (punctuation >= 9) {
+				sentence += "!"
+			}
+
+			sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1)
+			return sentence;
+		},
+
+		generateParagraph:function (minLength, maxLength) {
+			let paragraph = "";
+			let length = Math.floor(Math.random()*(maxLength + 1 - minLength) + minLength);
+			let quoteLocation = Math.floor(Math.random()*(length));
+
+			for (let i = 0; i < length; i++) {
+				if (i === quoteLocation) {
+					paragraph += this.quotes[Math.floor(Math.random()*this.quotes.length)] + ' ';
+				} else {
+				  paragraph += this.generateSentence(3, 12) + " ";
+				}
+			}
+
+			paragraph = paragraph.trimEnd();
+			return paragraph;
+		},
+
+		generateText:function () {
+			let paragraphs = "";
+
+			for (let i = 0; i < 5; i++) {
+				paragraphs += "<p>" + (this.generateParagraph(2, 5)) + "</p>";
+			}
+
+			this.fullText = paragraphs;
 		}
-	  }
-	  sentence = sentence.trimEnd();
-	  let punctuation = Math.floor(Math.random()*10);
-	  if (punctuation < 7) {
-		sentence += "."
-	  } else if (7 <= punctuation <9) {
-		sentence += "?"
-	  }else if (punctuation >=9) {
-		sentence += "!"
-	  }
-	  sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1)
-	  return sentence;
-	},
-	generateParagraph:function (minLength, maxLength) {
-	  let paragraph = "";
-	  let length = Math.floor(Math.random()*(maxLength + 1 - minLength) + minLength);
-	  let quoteLocation = Math.floor(Math.random()*(length));
-	  for (let i = 0; i < length; i++){
-		if (i === quoteLocation) {
-		  paragraph += this.quotes[Math.floor(Math.random()*this.quotes.length)] + ' ';
-		} else {
-		  paragraph += this.generateSentence(3, 12) + " ";
-		}
-	  }
-	  paragraph = paragraph.trimEnd();
-	  return paragraph;
-	},
-	generateText:function () {
-	  let paragraphs = "";
-	  for (let i = 0; i < 5; i++) {
-		paragraphs += "<p>" + (this.generateParagraph(2, 5)) + "</p>";
-	  }
-	  this.fullText = paragraphs;
 	}
-  }
 }
 
 </script>
