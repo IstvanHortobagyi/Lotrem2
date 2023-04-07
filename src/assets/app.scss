@@ -12,15 +12,15 @@ table { border-collapse: collapse; border-spacing: 0; }
 /* BASE */
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-  padding: 2rem;
-  font-size: 1.6rem;
-  color: #DDD;
-  line-height: 1.6rem;
-  background-color: #222;
+	padding: 3rem;
+	font-size: 1.6rem;
+	color: #DDD;
+	line-height: 1.6rem;
+	background-color: #222;
 }
 
 
@@ -28,19 +28,27 @@ body {
 /* TYPOGRAPHY */
 
 p, li {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 
 
 /* SITE ELEMENTS */
 
-.main-header {
-  margin-bottom: 2rem;
+.header {
+
 }
 
-.main-nav a + a {
-  margin-left: 1rem;
+.logo__image {
+	height: 200px;
+}
+
+.main {
+	margin: 3rem 0;
+}
+
+.footer {
+
 }
 
 
@@ -48,11 +56,11 @@ p, li {
 /* COMPONENTS */
 
 .btn {
-  display: inline-block;
-  padding: 1rem 2rem;
-  color: #FFF;
-  text-decoration: none;
-  text-transform: uppercase;
-  border-radius: 99rem;
-  background-color: tomato;
+	display: inline-block;
+	padding: 1rem 2rem;
+	color: #FFF;
+	text-decoration: none;
+	text-transform: uppercase;
+	border-radius: 99rem;
+	background-color: tomato;
 }
