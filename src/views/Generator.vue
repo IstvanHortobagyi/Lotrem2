@@ -3,8 +3,9 @@
 	<br><br>
 	<a href="#" @click="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
 	<br><br>
-	<span v-html="fullText" v-if="!showHtml"></span>
-	<span v-else>{{ fullText }}</span>
+	<!-- TODO: Kell egy 'isGenerated' vagy hasonló nevű változó, ami nézi, hogy generáltál-e már szöveget, és rá kell v-if-elni az alábbi két elementre -->
+	<div v-if="!showHtml" v-html="fullText" class="generated"></div>
+	<div v-else class="generated generated--code">{{ fullText }}</div>
 </template>
 
 <script>
