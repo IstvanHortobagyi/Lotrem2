@@ -1,11 +1,15 @@
 <template>
+	<h1 class="page-title mb-0">Unleash Your Inner Tolkien</h1>
+	<p>Summon the power of the One Ring to generate endless Lorem Ipsum!</p>
 	<a class="btn btn--md btn--success" href="#" @click.prevent="generateText()">Generate</a>
-	<br><br>
-	<a href="#" @click="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
-	<br><br>
-	<!-- TODO: Kell egy 'isGenerated' vagy hasonló nevű változó, ami nézi, hogy generáltál-e már szöveget, és rá kell v-if-elni az alábbi két elementre -->
-	<div v-if="!showHtml" v-html="fullText" class="generated"></div>
-	<div v-else class="generated generated--code">{{ fullText }}</div>
+	<!-- TODO: Kell egy 'isGenerated' vagy hasonló nevű változó, ami nézi, hogy generáltál-e már szöveget, és rá kell v-if-elni a lenti elementekre -->
+	<template v-if="isGenerated">
+		<div class="generator-options">
+			<a href="#" @click="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
+		</div>
+		<div v-if="!showHtml" v-html="fullText" class="generated"></div>
+		<div v-else class="generated generated--code">{{ fullText }}</div>
+	</template>
 </template>
 
 <script>
@@ -26,6 +30,8 @@ export default {
 		return {
 			fullText: '',
 			showHtml: false,
+			// TODO: Nézzük meg, hogy így jó-e
+			isGenerated: false,
 		}
 	},
 	mounted() {
@@ -102,6 +108,8 @@ export default {
 				paragraphs += "<p>" + (this.generateParagraph(2, 5)) + "</p>";
 			}
 
+			// TODO: Nézzük meg, hogy így jó-e
+			this.isGenerated = true;
 			this.fullText = paragraphs;
 		}
 	}

@@ -165,7 +165,12 @@ em {
 	background-color: tomato;
 }
 
+.generator-options {
+	margin: 2rem 0;
+}
+
 .generated {
+	margin-top: 2rem;
 	padding: 2rem 2.5rem;
 	border-radius: 1rem;
 	background-color: #333;
@@ -178,7 +183,7 @@ em {
 .member {
 	display: grid;
 	grid-template-columns: 10rem 1fr;
-	grid-gap: 0 4rem;
+	grid-gap: 1rem 4rem;
 	align-items: center;
 	margin-bottom: 4rem;
 }
@@ -190,6 +195,19 @@ em {
 	background-color: #e4f1e7;
 }
 
+.member__name {
+	align-self: end;
+}
+
 .member__intro {
+	align-self: start;
+	margin-bottom: 0;
+}
+
+
+
+/* UTILITIES */
+
+.mb-0 {
 	margin-bottom: 0;
 }
