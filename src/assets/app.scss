@@ -13,6 +13,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 :root {
 	--font: 'Montserrat', sans-serif;
+
+	--text: #B4BEC9;
+	--text-light: #DEEFE7;
+
+	--primary: #159A9C;
+	--primary-dark: #002333;
 }
 
 html {
@@ -25,10 +31,10 @@ body {
 	padding: 3rem;
 	font-family: var(--font);
 	font-size: 1.6rem;
-	color: #DDD;
+	color: var(--text);
 	letter-spacing: -.25px;
 	line-height: 1.6;
-	background-color: #222;
+	background-color: var(--primary-dark);
 }
 
 img {
@@ -42,6 +48,7 @@ img {
 
 h1, h2, h3, h4 {
 	font-weight: 700;
+	color: var(--text-light);
 }
 
 h1, .h1 {
@@ -64,7 +71,7 @@ p, li {
 
 a {
 	font-weight: 700;
-	color: #AAA;
+	color: var(--primary);
 	text-decoration: none;
 }
 
@@ -84,7 +91,7 @@ em {
 	padding-bottom: 2rem;
 	margin-bottom: 4rem;
 	text-align: center;
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid var(--primary);
 }
 
 .logo__image {
@@ -107,12 +114,16 @@ em {
 
 .nav__link {
 	padding: 1rem 1.5rem;
-	border-radius: .5rem;
+	border-bottom: 1px solid transparent;
+}
+
+.nav__link:hover,
+.nav__link:focus {
+	color: var(--text);
 }
 
 .nav__link--active {
-	color: #333;
-	background-color: #DDD;
+	border-bottom-color: var(--primary);
 }
 
 
@@ -138,7 +149,7 @@ em {
 	font-size: 75%;
 	letter-spacing: 0;
 	text-align: center;
-	border-top: 1px solid #333;
+	border-top: 1px solid var(--primary);
 }
 
 .footer:after {
@@ -150,7 +161,7 @@ em {
 	padding: 1rem;
 	font-size: 2rem;
 	line-height: 1;
-	background-color: #222;
+	background-color: var(--primary-dark);
 }
 
 .disclaimer {
@@ -163,14 +174,14 @@ em {
 
 .btn {
 	display: inline-block;
-	padding: 1.25rem 2.5rem;
+	padding: 1.25rem 3rem;
 	font-size: 1.8rem;
-	color: #FFF;
+	color: var(--primary-dark);
 	letter-spacing: -.5px;
 	text-decoration: none;
 	text-transform: uppercase;
 	border-radius: 99rem;
-	background-color: tomato;
+	background-color: var(--primary);
 }
 
 .btn--generate {
@@ -185,7 +196,7 @@ em {
 	margin-top: 2rem;
 	padding: 2rem 2.5rem;
 	border-radius: 1rem;
-	background-color: #333;
+	background-color: rgba(0,0,0,.15);
 }
 
 .generated--code {

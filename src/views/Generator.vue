@@ -5,7 +5,7 @@
 	<!-- TODO: Kell egy 'isGenerated' vagy hasonló nevű változó, ami nézi, hogy generáltál-e már szöveget, és rá kell v-if-elni a lenti elementekre -->
 	<template v-if="isGenerated">
 		<div class="generator-options">
-			<a href="#" @click="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
+			<a href="#" @click.prevent="showHtml = !showHtml">{{ showHtml ? "Show Text" : "Show HTML" }}</a>
 		</div>
 		<div v-if="!showHtml" v-html="fullText" class="generated"></div>
 		<div v-else class="generated generated--code">{{ fullText }}</div>
