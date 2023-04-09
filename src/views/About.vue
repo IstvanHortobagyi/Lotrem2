@@ -10,7 +10,7 @@
 	<article class="member">
 		<img class="member__photo" src="assets/static/images/about-roland.jpg" alt="placeholder" title="placeholder">
 		<h3 class="member__name">Roland Szabó</h3>
-		<p class="member__intro">"Roland, the friendly Hobbit of our Fellowship, fearlessly forging the frontend code of our generator, destined to rule them all with its stunning visual appeal!</p>
+		<p class="member__intro">Roland, the friendly Hobbit of our Fellowship, fearlessly forging the frontend code of our generator, destined to rule them all with its stunning visual appeal!</p>
 	</article>
 	<article class="member">
 		<img class="member__photo" src="assets/static/images/about-istvan.jpg" alt="placeholder" title="placeholder">
