@@ -1,7 +1,7 @@
 <template>
 	<h1 class="page-title mb-0">Unleash Your Inner Tolkien</h1>
-	<p>Summon the power of the One Ring to generate endless Lorem Ipsum!</p>
-	<a class="btn btn--md btn--success" href="#" @click.prevent="generateText()">Generate</a>
+	<p>Craft your own epic placeholder text with Middle-earth's words: Lorem Ipsum generator inspired by The Lord of the Rings.</p>
+	<a class="btn btn--generate" href="#" @click.prevent="generateText()">Generate</a>
 	<!-- TODO: Kell egy 'isGenerated' vagy hasonló nevű változó, ami nézi, hogy generáltál-e már szöveget, és rá kell v-if-elni a lenti elementekre -->
 	<template v-if="isGenerated">
 		<div class="generator-options">

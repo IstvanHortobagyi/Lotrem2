@@ -20,6 +20,8 @@ html {
 }
 
 body {
+	max-width: 100rem;
+	margin: 0 auto;
 	padding: 3rem;
 	font-family: var(--font);
 	font-size: 1.6rem;
@@ -104,7 +106,13 @@ em {
 }
 
 .nav__link {
-	padding: 1rem;
+	padding: 1rem 1.5rem;
+	border-radius: .5rem;
+}
+
+.nav__link--active {
+	color: #333;
+	background-color: #DDD;
 }
 
 
@@ -163,6 +171,10 @@ em {
 	text-transform: uppercase;
 	border-radius: 99rem;
 	background-color: tomato;
+}
+
+.btn--generate {
+	margin-top: 2rem;
 }
 
 .generator-options {

@@ -6,7 +6,8 @@
 		<nav class="nav">
 			<ul class="nav__list">
 				<li class="nav__item">
-					<RouterLink class="nav__link" to="/">Generator</RouterLink>
+					<!-- TODO: nav__link--active class-t be kell kötni, a Vue Routernek van erre beépített funkciója -->
+					<RouterLink class="nav__link nav__link--active" to="/">Generator</RouterLink>
 				</li>
 				<li class="nav__item">
 					<RouterLink class="nav__link" to="/about">About</RouterLink>
