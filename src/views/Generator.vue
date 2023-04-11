@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Paragraph from "@/assets/Components/Paragraph.vue";
 import {utilsStore} from "@/stores/UtilsStore";
 
@@ -30,8 +29,6 @@ export default {
 		return {
 			fullText: '',
 			showHtml: false,
-			// TODO: Nézzük meg, hogy így jó-e
-			isGenerated: false,
 		}
 	},
 	mounted() {
@@ -108,8 +105,6 @@ export default {
 				paragraphs += "<p>" + (this.generateParagraph(2, 5)) + "</p>";
 			}
 
-			// TODO: Nézzük meg, hogy így jó-e
-			this.isGenerated = true;
 			this.fullText = paragraphs;
 		}
 	}

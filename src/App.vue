@@ -23,7 +23,7 @@
 		<RouterView />
 	</main>
 
-	<footer class="footer" data-icon="{{ footerIcon }}">
+	<footer class="footer" :data-icon="footerIcons[Math.floor(Math.random()*footerIcons.length)]">
 		<p class="disclaimer">
 			Design by <a href="https://rolandszabo.design/" target="_blank" rel="noreferrer noopener">Roland Szabó</a>,
 			Coding by <a href="https://istvanhortobagyi.com/" target="_blank" rel="noreferrer noopener">István Hortobágyi</a>,
@@ -35,11 +35,22 @@
 
 </template>
 
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router';
 
-// TODO: Csináljunk egy tömböt, többféle Unicode emojival, amit minden oldalbetöltésnél randomizál egy fgv, és bedobja a <footer> element data-icon="" attr-jába
-let footerIcons = ["💍", "🧝‍♀️", "🧙", "🗡️", "🪄"];
+export default {
+	setup() {
+		return {
+			RouterLink: RouterLink,
+			RouterView: RouterView
+		}
+	},
+	data() {
+		return {
+			footerIcons: ["💍", "🧝‍♀️", "🧙", "🗡️", "🪄"]
+		}
+	}
+}
 </script>
 
 <style>
